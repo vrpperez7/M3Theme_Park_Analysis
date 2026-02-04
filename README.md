@@ -15,15 +15,15 @@
 
 # Business Problem:
 
-### My client, Supernova Theme Park, has hired me to do a cross-departmental plan for the Operations and Marketing team. They would like strategies for the next quarter to improve operational efficiency, guest experience, and market effectiveness and have provided me with Supernova Theme Park’s data to analyze and create insights.
+### My client, Supernova Theme Park, has hired me to develop a cross-departmental plan for the Operations and Marketing teams. They want to strategize for the next quarter to improve operational efficiency, guest experience, and marketing effectiveness. They have provided me with Supernova Theme Park’s data to analyze and generate insights.
 
 ## The stakeholders are:
 
 ### <ins>Primary Stakeholder</ins>
 ***Park General Manager's*** concerns are: </br>
-- Unhappy with previous two quarters </br>
-- Upset with fluctuating revenue streams </br>
-- Uneven guest satisfaction scores </br>
+- Unhappy with previous two quarters. </br>
+- Upset with fluctuating revenue streams. </br>
+- Uneven guest satisfaction scores. </br>
 
 ### <ins>Supporting Stakeholders</ins> </br>
 **Operations Director's** concerns include: </br>
@@ -42,13 +42,13 @@ Simply put, a __star schema__ is when a central fact table references multiple d
 
 <img width="698" height="326" alt="Star-schema" src="https://github.com/user-attachments/assets/5aaafdc8-d5d0-4ccf-91fc-d0cd25e9fba2" />
 
-A _dimension table_ contains all unique instances, is usually very verbose, and is usually grouped. </br>
+A _dimension table_ contains all unique instances, is very verbose, and is usually grouped. </br>
 
-A _fact table_ usually refers to events in the real world, contains measures for the foreign keys associated to the primary key in a dimension table, and sometimes includes date/time stamps. </br>
+A fact table refers to real-world events, contains measures linked to foreign keys associated with the primary keys in dimension tables, and sometimes includes date and time stamps. </br>
 
 Some benefits are:
-- Easier to merge tables when fact table is common between dimension tables
-- Easier to read
+- Easier merging of tables when a fact table is shared across dimension tables
+- Improved readability
 
 ### The Database has 7 Tables
 
@@ -72,9 +72,9 @@ I calculated the average satisfaction_rating per attraction_name by using the di
 
 <img width="286" height="211" alt="Screenshot 2025-08-22 at 3 01 46 PM" src="https://github.com/user-attachments/assets/fd4b6929-ea10-4c9f-9fa4-729c7177c905" /> </br>
 
-This aggregation of satisfaction_rating showed me a lot about on how customers felt about the attractions. </br>
+This aggregation of satisfaction_rating provided insights into how customers felt about the attractions. </br>
 
-Then, I checked to see the frequency of total guests (47) that utilized promotional codes.
+Then, I checked the frequency of total guests (47) that utilized promotional codes.
 
 <img width="205" height="125" alt="Screenshot 2025-08-22 at 3 29 07 PM" src="https://github.com/user-attachments/assets/2f0592db-7db5-4fd7-be3f-e1e987466e42" />
 
@@ -82,10 +82,10 @@ Of the 40 guests with promo code data, most of them (33) used promotional offers
 
 ## FEATURE ENGINEERING
 
-I engineered a new column, 'satisfaction_score', to categorize satisfaction_rating into bins where:
-- satisfaction_rating = 5 is 'Satisfied'
-- satisfaction_rating = 4 is 'Moderately Satisfied'
-- satisfaction_rating < 4 is 'Unsatisfied'
+I engineered a new column, satisfaction_score, to categorize satisfaction_rating into bins where:
+- satisfaction_rating = 5 -> 'Satisfied'
+- satisfaction_rating = 4 -> 'Moderately Satisfied'
+- satisfaction_rating < 4 -> 'Unsatisfied'
 
 ```
 ALTER TABLE fact_ride_events ADD COLUMN satisfied_score
@@ -99,19 +99,21 @@ SET satisfied_score =
          END
 ```
 
-This allows me to make a count for attraction ride categories and further provide insight of customer dissatisfaction. For example, we can tell which rides are negatively or positively affecting overall satisfaction. </br>
-This can lead to more data in the future regarding reach out to unsatisfied or moderatiley satisfied guests for feedback. </br>
+This allows me to count rides by satisfaction categories and provide insights into customer dissatisfaction. For example, we can identify which rides are negatively or positively affecting overall satisfaction. </br>
+This can also guide future outreach to guests who are unsatisfied or moderately satisfied for feedback. </br>
 
 
 <img width="289" height="185" alt="Screenshot 2025-08-22 at 3 55 49 PM" src="https://github.com/user-attachments/assets/68f83ab2-9648-4224-99f4-6462bf0c4b49" />
 
-I utilized the new feature to see the top 5 most frequently rated were unsatisfied/moderately satisfied. Of which, two were the 'Water' category. </br>
+
+I used the new feature to see the top 5 attractions most frequently rated as unsatisfied or moderately satisfied. Of these, two belonged to the 'Water' category. </br>
+
 # __Insights and Recommendations__
 
 ## Analysis for Operations Director
 
-The original aggregation of satisfaction_rating showed me a lot about how customers felt for the water attractions. </br>
-Interestingly enough, the water category had two of the lowest satisfaction_ratings, so I dove deeper into the categories and found out more about waiting times. </br>
+The original aggregation of satisfaction_rating showed me a lot about how customers felt about the Water attractions. </br>
+Interestingly, the Water category had two of the lowest satisfaction_rating, so I dug deeper into the categories and examined waiting times. </br>
 
 ```
 SELECT da.category, COUNT(fre.satisfaction_rating) as count_of_visits,
@@ -124,7 +126,7 @@ GROUP BY da.category
 ```
 <img width="414" height="151" alt="Screenshot 2025-08-22 at 3 19 08 PM" src="https://github.com/user-attachments/assets/77e64cf4-dec9-4860-85dd-170cc7c00e4a" />
 
-Not only did the Water category of rides have the highest number of visits between all ride categories (25), it also had the highest average wait time per ride (49.12) and lowest average rating (2.72). This could be a cause for concern for the **Operations Director.** </br>
+Not only did the Water category have the highest number of visits among all ride categories (25), it also had the highest average wait time per ride (49.12 minutes) and lowest average rating (2.72). This could be a concern for the **Operations Director.** </br>
 
 ### Visuals:
 
@@ -132,12 +134,12 @@ Not only did the Water category of rides have the highest number of visits betwe
 </br>
 ![bar chart for average wait per category](/figures/waitpercat.png "Average Wait")
 </br>
-On these graphs, we can see that Kids rides have the lowest average wait time and the best guest rating, suggesting that reducing wait times may lead to improved ratings. Something to think about for both the **Park General Manager** and the **Operations Director**.
+On these graphs, we can see that Kids rides have the lowest average wait time and the highest guest ratings, suggesting that reducing wait times may lead to improved satisfaction. This is an important consideration for both the **Park General Manager** and the **Operations Director**.
 
 ## Analysis for Marketing Director
 
-To further inspect transactions and promotional offers, I looked in the fact_purchases table. </br>
-Joining the fact_purchase table with the fact_visits table in a CTE allowed for matching of visit_id and pinpoint how many purchases were made by guests with promotional offers. I then grouped and found more insights of how many purchases were made by each promotional offer category. </br>
+To further inspect transactions and promotional offers, I examined the fact_purchases table. </br>
+By joining the fact_purchase table with the fact_visits table in a CTE, I was able to match visit_id and determine how many purchases were made by guests using promotional offers. I then grouped the data to gain insights into the number of purchases per promotional offer category. </br>
 
 ```
 --cte for join of fact purchases and fact_visits
@@ -155,8 +157,8 @@ Joining the fact_purchase table with the fact_visits table in a CTE allowed for 
 ```
 <img width="256" height="125" alt="Screenshot 2025-08-22 at 5 03 09 PM" src="https://github.com/user-attachments/assets/42072b4a-5133-4bce-b85b-1db1b1f16254" />
 
-- Guests with promotional offers make the most purchases. (50)
-- Guests without promotional offers purchase the least. (4)
+- Guests with promotional offers made the most purchases. (50)
+- Guests without promotional made the fewest purchases. (4)
 
 ### Visuals
 
