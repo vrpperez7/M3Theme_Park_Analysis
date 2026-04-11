@@ -52,12 +52,13 @@ Some benefits are:
 
 ### The Database has 7 Tables
 
-4 Dimension Tables: </br>
+4 Dimension Tables:  
 - ```dim_attraction``` : includes all unique attractions at Supernova
 - ```dim_date``` : includes all unique dates of the database
 - ```dim_guest``` : includes all guests and their contact information
-- ```dim_ticket``` : includes all ticket types and their pricing </br>  
-3 Fact Tables: </br>
+- ```dim_ticket``` : includes all ticket types and their pricing  
+
+3 Fact Tables:  
 - ```fact_purchases``` : all instances of guest purchases made during a visit at Supernova
 - ```fact_ride_events``` : all details of rides during a visit
 - ```fact_visits``` : all separate visits a guest has done
