@@ -56,7 +56,7 @@ __4 Dimension Tables:__ </br>
 - ```dim_attraction``` : includes all unique attractions at Supernova
 - ```dim_date``` : includes all unique dates of the database
 - ```dim_guest``` : includes all guests and their contact information
-- ```dim_ticket``` : includes all ticket types and their pricing </br>
+- ```dim_ticket``` : includes all ticket types and their pricing </br>  
 __3 Fact Tables:__ </br>
 - ```fact_purchases``` : all instances of guest purchases made during a visit at Supernova
 - ```fact_ride_events``` : all details of rides during a visit
@@ -194,6 +194,21 @@ As we were able to find out in the analysis, </br>
 - Data only referencing a week, more data could provide different analysis.
 - Many NULL values within records, had to proceed without imputation by ignoring NULLs.
 
+## April 10 Updates (Statistical Analysis)
+The goal of this analysis was to evaluate whether wait times and ride categories show statistically significant differences that could inform operational recommendations.
+
+### Two-Sample T-Test
+- Wait times were split into short and long groups to compare mean satisfaction scores.
+- No statistically significant difference in mean ratings was found between short and long wait times.
+### Welch’s ANOVA
+- Ride categories (kids, show, thrill, water) were used to compare mean wait times across groups.
+- No statistically significant differences in average wait times were found between ride categories.
+
+### Overall Learnings
+- No statistically significant relationships were identified between wait times, ride categories, and satisfaction scores.
+- The 1–5 rating scale may limit variability and reduce the sensitivity of statistical testing.
+- A more granular rating system (e.g., 1–10 scale) may improve the ability to detect differences in guest satisfaction.
+
 ### REPO NAVIGATION
 ```
 |--data/
@@ -204,6 +219,7 @@ As we were able to find out in the analysis, </br>
 |------waitpercat.png
 |--notebooks/
 |------plots.ipynb
+|------statistical_analysis.ipynb
 |--sql/
 |------01_eda.sql
 |------02_cleaning.sql
