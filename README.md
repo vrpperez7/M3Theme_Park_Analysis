@@ -195,20 +195,24 @@ As we were able to find out in the analysis, </br>
 - Data only referencing a week, more data could provide different analysis.
 - Many NULL values within records, had to proceed without imputation by ignoring NULLs.
 
-## April 10 Updates (Statistical Analysis)
+## April 10 Updates (Expanded Statistical Analysis)
 The goal of this analysis was to evaluate whether wait times and ride categories show statistically significant differences that could inform operational recommendations.
 
 ### Two-Sample T-Test
-- Wait times were split into short and long groups to compare mean satisfaction scores.
-- No statistically significant difference in mean ratings was found between short and long wait times.
+- **Why:** Provide statistical analysis to see if the claim of longer wait times leading to lower ratings were statistically significant.
+    - Wait times were split into short and long groups to compare mean satisfaction scores.
+- No statistically significant difference in mean ratings were found between short and long wait times.
+
 ### Welch’s ANOVA
-- Ride categories (kids, show, thrill, water) were used to compare mean wait times across groups.
+- **Why:** Provide an exemplar category with statistically higher wait times to follow for all other ride categories. 
+    - Ride categories (kids, show, thrill, water) were used to compare mean wait times across groups.
 - No statistically significant differences in average wait times were found between ride categories.
 
 ### Overall Learnings
 - No statistically significant relationships were identified between wait times, ride categories, and satisfaction scores.
 - The 1–5 rating scale may limit variability and reduce the sensitivity of statistical testing.
 - A more granular rating system (e.g., 1–10 scale) may improve the ability to detect differences in guest satisfaction.
+- Although we weren’t able to find statistical significance within categories, categories like kids rides, which showed lowest wait times and higher customer satisfaction, still can serve as exemplars for other ride categories.
 
 ### REPO NAVIGATION
 ```
