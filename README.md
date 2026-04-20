@@ -11,7 +11,7 @@
 - [Marketing Director Analysis & Visuals](#analysis-for-marketing-director)
 - [Final Recommendations](#final-recommendations-for-next-quarter)
 - [Ethics and Biases](#ethics-and-biases)
-- [Expanded Analysis](#april-10-updates-(expanded-etatistical-analysis))
+- [Expanded Analysis](expanded-statistical-analysis)
 - [Repo Navigation](#repo-navigation)
 
 # Business Problem:
@@ -196,7 +196,7 @@ As we were able to find out in the analysis, </br>
 - Data only referencing a week, more data could provide different analysis.
 - Many NULL values within records, had to proceed without imputation by ignoring NULLs.
 
-## April 10 Updates (Expanded Statistical Analysis)
+## Expanded Statistical Analysis
 The goal of this analysis was to evaluate whether wait times and ride categories show statistically significant differences that could inform operational recommendations.
 
 ### Two-Sample T-Test
