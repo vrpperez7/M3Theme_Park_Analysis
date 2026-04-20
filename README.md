@@ -11,7 +11,7 @@
 - [Marketing Director Analysis & Visuals](#analysis-for-marketing-director)
 - [Final Recommendations](#final-recommendations-for-next-quarter)
 - [Ethics and Biases](#ethics-and-biases)
-- [Expanded Analysis](expanded-statistical-analysis)
+- [Expanded Analysis](#expanded-statistical-analysis)
 - [Repo Navigation](#repo-navigation)
 
 # Business Problem:
